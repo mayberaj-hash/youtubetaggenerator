@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lyrics Tag Generator Two</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      label, input {
+        margin: 10px 0;
+      }
+      
+      input[type="text"] {
+        width: 300px;
+        height: 30px;
+        padding: 5px;
+        font-size: 18px;
+      }
+      
+      #replace-btn {
+        width: 100px;
+        height: 40px;
+        background-color: orange;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      #output {
+        margin-top: 40px;
+        font-size: 18px;
+      }
+      
+      #copy-btn {
+        width: 100px;
+        height: 40px;
+        background-color: magenta;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Lyrics Tag Generator Two</h1>
+    <form>
+      <label for="input1">Artits 1:</label>
+      <input type="text" id="input1" name="input1"><br><br>
+      <label for="input2">Artits 2:</label>
+      <input type="text" id="input2" name="input2"><br><br>
+      <label for="input3">Song Name:</label>
+      <input type="text" id="input3" name="input3"><br><br>
+      <button id="replace-btn">Generate</button>
+    </form>
+    <p id="output">
+      1 ,<br>
+      2 ,<br>
+      5 ,<br>
+      1 5 ,<br>
+      5 1,<br>
+      2 5 ,<br>
+      5 2 ,<br>
+      5 lyrics ,<br>
+      1 lyrics ,<br>
+      2 lyrics ,<br>
+      1 5 lyrics ,<br>
+      5 1 lyrics ,<br>
+      2 5 lyrics ,<br>
+      5 2 lyrics ,<br>
+      1 lyrics 5 ,<br>
+      lyrics 5 1 ,<br>
+      2 lyrics 5 ,<br>
+      lyrics 5 2 
+    </p>
+    <button id="copy-btn">Copy</button>
+
+    <script>
+      document.getElementById("replace-btn").addEventListener("click", replaceInputs);
+      document.getElementById("copy-btn").addEventListener("click", copyOutput);
+
+      function replaceInputs(e) {
+        e.preventDefault();
+        var input1 = document.getElementById("input1").value;
+        var input2 = document.getElementById("input2").value;
+        var input3 = document.getElementById("input3").value;
+        var output = document.getElementById("output");
+
+        output.innerHTML = output.textContent.replace(/1/g, input1).replace(/2/g, input2).replace(/5/g, input3);
+      }
+
+      function copyOutput() {
+        var output = document.getElementById("output");
+        var tempInput = document.createElement("input");
+
+        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+        tempInput.value = output.textContent.toLowerCase();
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+    </script>
+  </body>
+</html>
