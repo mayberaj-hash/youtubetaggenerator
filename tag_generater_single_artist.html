@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lyrics Tag Generator One</title>
+    <style>
+      form {
+        width: 500px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      label {
+    font-weight: bold;
+  }
+
+  input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    margin: 20px 0;
+    border: 1px solid #c20777;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    border: 1px solid #ff6200;
+    border-radius: 5px;
+    background-color: orange;
+    cursor: pointer;
+  }
+
+  #output {
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+
+  #copy-btn {
+    float: right;
+    margin-right: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>Lyrics Tag Generator One</h1>
+  <form>
+    <label for="input1">Artist 1:</label>
+    <input type="text" id="input1" name="input1"><br><br>
+    <label for="input2">Song N:</label>
+    <input type="text" id="input2" name="input2"><br><br>
+    <button id="replace-btn">Generate</button>
+  </form>
+  <p id="output">
+    1 ,<br>
+    5 ,<br>
+    1 5 ,<br>
+    5 1 ,<br>
+    1 5 lyrics ,<br>
+    5 1 lyrics ,<br>
+    1 lyrics 5 ,<br>
+    5 lyrics 1 ,<br>
+    1 lyrics ,<br>
+    5 lyrics ,<br>
+    lyrics 1 ,<br>
+    lyrics 5 ,<br>
+    lyrics 1 5 ,<br>
+    lyrics 5 1 ,<br>
+    lyrics for 5 by 1 ,<br>
+    lyric video for 5 by 1
+  </p>
+  <button id="copy-btn">Copy</button>
+
+  <script>
+    document.getElementById("replace-btn").addEventListener("click", replaceInputs);
+    document.getElementById("copy-btn").addEventListener("click", copyOutput);
+  
+    function replaceInputs(e) {
+      e.preventDefault();
+      var input1 = document.getElementById("input1").value;
+      var input2 = document.getElementById("input2").value;
+      var output = document.getElementById("output");
+  
+      output.innerHTML = output.textContent.replace(/1/g, input1).replace(/5/g, input2);
+    }
+  
+    function copyOutput() {
+      var output = document.getElementById("output");
+      var tempInput = document.createElement("input");
+  
+        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+        tempInput.value = output.textContent.toLowerCase();
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+    </script>
+  </body>
+</html>
